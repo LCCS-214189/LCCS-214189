@@ -46,9 +46,15 @@
         <h1>Countdown to Key LC Dates and Admin</h1>
         <div id="countdowns"></div>
     </div>
+<br>
+<br>
+    <div class="container">
+        <h1>Countdown to Holiday Events</h1>
+        <div id="hols-countdowns"></div>
+    </div>
 
     <script>
-        const events = [
+        const exams = [
             { name: "Religion Coursework", date: "2025-05-02", color: "#80d8ff" },
             { name: "History Coursework", date: "2025-05-02", color: "#ffcc80" },
             { name: "Computer Science", date: "2025-05-21", color: "#a5d6a7" },
@@ -63,39 +69,50 @@
             { name: "Economics", date: "2025-06-20", color: "#B7CE63" },
             { name: "Religion", date: "2025-06-24", color: "#80d8ff" },
             { name: "Graduation Prinks / Night Out", date: "2025-05-16", color: "#81d4fa" },
-            { name: "Graduation Mass / Leopardstown", date: "2025-05-18", color: "#81d4fa" },
+            { name: "Graduation Mass / Leopardstown", date: "2025-05-18", color: "#81d4fa" }
         ];
 
-            function calculateDaysLeft(eventDate) {
+        const hols = [
+            { name: "Faro Flight to Albufeira", date: "2025-06-28", color: "#80d8ff" },
+            { name: "Mental Health and Recovery in Pine Cliffs", date: "2025-07-06", color: "#ffcc80" },
+            { name: "Kenya Flight Out w/ Mum", date: "2025-07-15", color: "#e1bee7" },
+        ];
+
+        function calculateDaysLeft(eventDate) {
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
             const targetDate = new Date(eventDate);
+            targetDate.setHours(0, 0, 0, 0);
             const timeDiff = targetDate - today;
             return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         }
 
-        function displayCountdowns() {
-            const countdownsDiv = document.getElementById('countdowns');
+        function displayCountdowns(events, containerId) {
+            const countdownsDiv = document.getElementById(containerId);
             countdownsDiv.innerHTML = "";
 
             events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             events.forEach(event => {
-            const daysLeft = calculateDaysLeft(event.date);
-            if (daysLeft >= 0) {
-             const countdownItem = document.createElement('div');
-             countdownItem.className = 'countdown-item';
-            countdownItem.style.backgroundColor = event.color;
-             countdownItem.innerHTML = `
-                <span class="event-name">${event.name}:</span>
-                 <span class="days">${daysLeft} day${daysLeft !== 1 ? 's' : ''} left</span>
-             `;
-        countdownsDiv.appendChild(countdownItem);
-    }
-});
-
+                const daysLeft = calculateDaysLeft(event.date);
+                if (daysLeft >= 0) {
+                    const countdownItem = document.createElement('div');
+                    countdownItem.className = 'countdown-item';
+                    countdownItem.style.backgroundColor = event.color;
+                    countdownItem.innerHTML = `
+                        <span class="event-name">${event.name}:</span>
+                        <br>
+                        <span class="days">${daysLeft} day${daysLeft !== 1 ? 's' : ''} left</span>
+                    `;
+                    countdownsDiv.appendChild(countdownItem);
+                }
+            });
         }
 
-        displayCountdowns();
-    </script>
+        displayCountdowns(exams, 'countdowns');
+        displayCountdowns(hols, 'hols-countdowns');
+
+</script>
+
 </body>
 </html>
