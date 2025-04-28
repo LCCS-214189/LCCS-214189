@@ -35,7 +35,7 @@
 
         .days {
             font-weight: bold;
-            colour: #00796b;
+            color: #00796b;
         }
     </style>
 </head>
@@ -61,12 +61,13 @@
             { name: "History", date: "2025-06-11" },
             { name: "Economics", date: "2025-06-20" },
             { name: "Religion", date: "2025-06-24" },
-
+            { name: "Graduation Prinks / Night Out", date: "2025-05-16" },
+            { name: "Graduation Mass / Leopardstown", date: "2025-05-18" },
             // Add more exams here
         ];
 
-        // Function to calculate days left
-        function calculateDaysLeft(eventDate) {
+                // Function to calculate days left
+                function calculateDaysLeft(eventDate) {
             const today = new Date();
             const targetDate = new Date(eventDate);
             const timeDiff = targetDate - today;
@@ -77,6 +78,9 @@
         function displayCountdowns() {
             const countdownsDiv = document.getElementById('countdowns');
             countdownsDiv.innerHTML = "";
+
+            // Sort events by date
+            events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             events.forEach(event => {
                 const daysLeft = calculateDaysLeft(event.date);
