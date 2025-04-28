@@ -35,7 +35,7 @@
 
         .days {
             font-weight: bold;
-            color: #00796b;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -48,21 +48,21 @@
     <script>
         // List of exam events
         const events = [
-            { name: "Religion Coursework", date: "2025-05-02" },
-            { name: "History Coursework", date: "2025-05-02" },
-            { name: "Computer Science", date: "2025-05-21" },
-            { name: "English Paper 1", date: "2025-06-04" },
-            { name: "English Paper 2", date: "2025-06-05" },
-            { name: "Maths Paper 1", date: "2025-06-06" },
-            { name: "Maths Paper 2", date: "2025-06-09" },
-            { name: "Irish Paper 1", date: "2025-06-09" },
-            { name: "Irish Paper 2", date: "2025-06-10" },
-            { name: "French", date: "2025-06-11" },
-            { name: "History", date: "2025-06-11" },
-            { name: "Economics", date: "2025-06-20" },
-            { name: "Religion", date: "2025-06-24" },
-            { name: "Graduation Prinks / Night Out", date: "2025-05-16" },
-            { name: "Graduation Mass / Leopardstown", date: "2025-05-18" },
+            { name: "Religion Coursework", date: "2025-05-02", color: "#80d8ff" },
+            { name: "History Coursework", date: "2025-05-02", color: "#ffcc80" },
+            { name: "Computer Science", date: "2025-05-21", color: "#a5d6a7" },
+            { name: "Leaving Cert English Paper 1", date: "2025-06-04", color: "#f48fb1" },
+            { name: "English Paper 2", date: "2025-06-05", color: "#b39ddb" },
+            { name: "Maths Paper 1", date: "2025-06-06", color: "#f931b5" },
+            { name: "Maths Paper 2", date: "2025-06-09", color: "#b2ebf2" },
+            { name: "Irish Paper 1", date: "2025-06-09", color: "#ffab91" },
+            { name: "Irish Paper 2", date: "2025-06-10", color: "#e1bee7" },
+            { name: "French", date: "2025-06-11", color: "#cfd8dc" },
+            { name: "History", date: "2025-06-11", color: "#ffcc80" },
+            { name: "Economics", date: "2025-06-20", color: "#B7CE63" },
+            { name: "Religion", date: "2025-06-24", color: "#80d8ff" },
+            { name: "Graduation Prinks / Night Out", date: "2025-05-16", color: "#81d4fa" },
+            { name: "Graduation Mass / Leopardstown", date: "2025-05-18", color: "#81d4fa" },
             // Add more exams here
         ];
 
@@ -86,7 +86,7 @@
                 const daysLeft = calculateDaysLeft(event.date);
                 const countdownItem = document.createElement('div');
                 countdownItem.className = 'countdown-item';
-                countdownItem.innerHTML = `
+                countdownItem.style.backgroundColor = event.color;                countdownItem.innerHTML = `
                     <span class="event-name">${event.name}:</span>
                     <span class="days">${daysLeft} day${daysLeft !== 1 ? 's' : ''} left</span>
                 `;
