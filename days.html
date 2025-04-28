@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How Many Days Until Exams</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: centre;
+            margin-bottom: 30px;
+        }
+
+        .countdown-item {
+            background: #e0f7fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .days {
+            font-weight: bold;
+            colour: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown to Exams</h1>
+        <div id="countdowns"></div>
+    </div>
+
+    <script>
+        // List of exam events
+        const events = [
+            { name: "Religion Coursework", date: "2025-05-02" },
+            { name: "History Coursework", date: "2025-05-02" },
+            { name: "Computer Science", date: "2025-05-21" },
+            { name: "English Paper 1", date: "2025-06-04" },
+            { name: "English Paper 2", date: "2025-06-05" },
+            { name: "Maths Paper 1", date: "2025-06-06" },
+            { name: "Maths Paper 2", date: "2025-06-09" },
+            { name: "Irish Paper 1", date: "2025-06-09" },
+            { name: "Irish Paper 2", date: "2025-06-10" },
+            { name: "French", date: "2025-06-11" },
+            { name: "History", date: "2025-06-11" },
+            { name: "Economics", date: "2025-06-20" },
+            { name: "Religion", date: "2025-06-24" },
+
+            // Add more exams here
+        ];
+
+        // Function to calculate days left
+        function calculateDaysLeft(eventDate) {
+            const today = new Date();
+            const targetDate = new Date(eventDate);
+            const timeDiff = targetDate - today;
+            return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        }
+
+        // Function to display countdowns
+        function displayCountdowns() {
+            const countdownsDiv = document.getElementById('countdowns');
+            countdownsDiv.innerHTML = "";
+
+            events.forEach(event => {
+                const daysLeft = calculateDaysLeft(event.date);
+                const countdownItem = document.createElement('div');
+                countdownItem.className = 'countdown-item';
+                countdownItem.innerHTML = `
+                    <span class="event-name">${event.name}:</span>
+                    <span class="days">${daysLeft} day${daysLeft !== 1 ? 's' : ''} left</span>
+                `;
+                countdownsDiv.appendChild(countdownItem);
+            });
+        }
+
+        // Run when page loads
+        displayCountdowns();
+    </script>
+</body>
+</html>
